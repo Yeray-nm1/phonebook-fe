@@ -38,8 +38,8 @@ const App = () => {
           setTimeout(() => {
             setMessage(null)
           }, 5000)
-        }).catch(() => {
-          setMessage(`Information of ${person.name} has already been removed from server`)
+        }).catch(error => {
+          setMessage(error.response.data.error)
           setError(true)
           setTimeout(() => {
             setMessage(null)
@@ -56,6 +56,13 @@ const App = () => {
       setMessage(`Added ${returnedPerson.name}`)
       setTimeout(() => {
         setMessage(null)
+      }, 5000)
+    }).catch(error => {
+      setMessage(error.response.data.error)
+      setError(true)
+      setTimeout(() => {
+        setMessage(null)
+        setError(false)
       }, 5000)
     })
     setNewName('')
